@@ -10,7 +10,7 @@ export default function LandingPage() {
       <nav className="navbar">
         <div className="nav-brand">Student Activities Portal</div>
         <ul className="nav-links">
-          <li><button onClick={() => navigate("/")} className="nav-btn">Login</button></li>
+          <li><button onClick={() => navigate("/login")} className="nav-btn">Login</button></li>
           <li><a href="#features" className="nav-link">Features</a></li>
           <li><a href="#team" className="nav-link">Team</a></li>
           <li><a href="#contact" className="nav-link">Contact</a></li>
@@ -22,7 +22,7 @@ export default function LandingPage() {
         <div className="hero-content">
           <h1>Engage. Explore. Excel.</h1>
           <p>Manage and participate in extracurricular activities with ease. Whether you're a student, trainer, or admin — our portal has you covered.</p>
-          <button onClick={() => navigate("/")} className="btn-primary">Get Started</button>
+          <button onClick={() => navigate("/login")} className="btn-primary">Get Started</button>
         </div>
         <div className="hero-image">
           {/* You can add an image or illustration here */}
