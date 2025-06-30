@@ -19,12 +19,15 @@ export default function LandingPage() {
     <div className="landing-container">
       {/* Navigation */}
       <nav className="navbar">
-        <div className="nav-brand">Student Activities Portal</div>
+        <div className="nav-brand">
+          <span className="logo-accent">Stu</span><span className="logo-main">ActPortal</span>
+        </div>
+
         <ul className="nav-links">
           <li><button onClick={handleLoginClick} className="nav-btn">Login</button></li>
-          <li><a href="#features" className="nav-link">Features</a></li>
-          <li><a href="#team" className="nav-link">Team</a></li>
-          <li><a href="#contact" className="nav-link">Contact</a></li>
+          {/* <li><a href="#features" className="nav-link">Features</a></li> */}
+          {/* <li><a href="#team" className="nav-link">Team</a></li> */}
+          {/* <li><a href="#contact" className="nav-link">Contact</a></li> */}
         </ul>
       </nav>
 
