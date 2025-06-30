@@ -178,13 +178,37 @@
   transform: translateY(-5px);
 }
 
+.team-members {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding: 20px 0;
+}
+
+.team-member {
+  text-align: center;
+}
+
 .avatar {
-  width: 90px;
-  height: 90px;
-  background: #004aad;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  margin: 0 auto 1rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  object-fit: cover;
+  border: 3px solid #00c2ff;
+  box-shadow: 0 4px 12px rgba(0, 194, 255, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.avatar:hover {
+  transform: scale(1.08);
+}
+
+.member-name {
+  margin-top: 12px;
+  font-weight: 600;
+  color: white;
+  font-size: 1rem;
 }
 
 .member-name {

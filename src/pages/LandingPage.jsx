@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import './LandingPage.css';
 import agahozoImage from './agahozo.jpeg';
+import samImage from './sam.jpg';
+import fikiriImage from './fikiri.jpg';
 import React, { useState } from 'react';
 
 export default function LandingPage() {
@@ -117,14 +119,15 @@ export default function LandingPage() {
         <h2>Meet the Team</h2>
         <div className="team-members">
           <div className="team-member">
-            <div className="avatar" />
+            <img src={samImage} alt="Mugisha Samuel" className="avatar" />
             <p className="member-name">Mugisha Samuel</p>
           </div>
           <div className="team-member">
-            <div className="avatar" />
+            <img src={fikiriImage} alt="Zarizo Fikiri Nicolas" className="avatar" />
             <p className="member-name">Zarizo Fikiri Nicolas</p>
           </div>
         </div>
+
       </section>
 
       {/* Contact */}
