@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import './LandingPage.css'; 
+import './LandingPage.css';
+import agahozoImage from './agahozo.jpeg';
+
 
 export default function LandingPage() {
   const navigate = useNavigate();
@@ -25,7 +27,7 @@ export default function LandingPage() {
           <button onClick={() => navigate("/login")} className="btn-primary">Get Started</button>
         </div>
         <div className="hero-image">
-          {/* You can add an image or illustration here */}
+          <img src={agahozoImage} alt="Hero Illustration" />
         </div>
       </header>
 
@@ -48,16 +50,53 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Stats Section */}
+      <section className="stats-section">
+        <div className="stats-grid">
+          <div className="stat-box">
+            <h3>500+</h3>
+            <p>Active Students</p>
+          </div>
+          <div className="stat-box">
+            <h3>15+</h3>
+            <p>Activity Types</p>
+          </div>
+          <div className="stat-box">
+            <h3>10+</h3>
+            <p>Trainers</p>
+          </div>
+          <div className="stat-box">
+            <h3>1+</h3>
+            <p>Years of Impact</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="testimonials-section">
+        <h2>What Students Say</h2>
+        <div className="testimonial-slider">
+          <div className="testimonial-card">
+            <p>“This portal made it so easy to join debate club!”</p>
+            <span>— Jerimiah, S6MPC</span>
+          </div>
+          <div className="testimonial-card">
+            <p>“I could track my hours and submit reports so easily.”</p>
+            <span>— Manase, S6PCB</span>
+          </div>
+        </div>
+      </section>
+
       {/* Team */}
       <section id="team" className="team-section">
         <h2>Meet the Team</h2>
         <div className="team-members">
           <div className="team-member">
-            <div className="avatar" aria-label="Samuel's avatar" />
+            <div className="avatar" />
             <p className="member-name">Mugisha Samuel</p>
           </div>
           <div className="team-member">
-            <div className="avatar" aria-label="Zarizo Fikiri Nicolas avatar" />
+            <div className="avatar" />
             <p className="member-name">Zarizo Fikiri Nicolas</p>
           </div>
         </div>
@@ -73,6 +112,12 @@ export default function LandingPage() {
           <textarea placeholder="Your Message" rows="4" required></textarea>
           <button type="submit" className="btn-primary">Send Message</button>
         </form>
+      </section>
+
+      {/* CTA Banner */}
+      <section className="cta-banner">
+        <h2>Ready to make your mark?</h2>
+        <button onClick={() => navigate("/login")} className="btn-primary">Join Now</button>
       </section>
 
       {/* Footer */}
