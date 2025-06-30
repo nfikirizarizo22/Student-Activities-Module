@@ -1,10 +1,19 @@
 import { useNavigate } from "react-router-dom";
 import './LandingPage.css';
 import agahozoImage from './agahozo.jpeg';
-
+import React, { useState } from 'react';
 
 export default function LandingPage() {
   const navigate = useNavigate();
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
+  const handleLoginClick = () => {
+    setShowLoginModal(true);
+  };
+
+  const closeLoginModal = () => {
+    setShowLoginModal(false);
+  };
 
   return (
     <div className="landing-container">
@@ -12,7 +21,7 @@ export default function LandingPage() {
       <nav className="navbar">
         <div className="nav-brand">Student Activities Portal</div>
         <ul className="nav-links">
-          <li><button onClick={() => navigate("/login")} className="nav-btn">Login</button></li>
+          <li><button onClick={handleLoginClick} className="nav-btn">Login</button></li>
           <li><a href="#features" className="nav-link">Features</a></li>
           <li><a href="#team" className="nav-link">Team</a></li>
           <li><a href="#contact" className="nav-link">Contact</a></li>
@@ -24,12 +33,25 @@ export default function LandingPage() {
         <div className="hero-content">
           <h1>Engage. Explore. Excel.</h1>
           <p>Manage and participate in extracurricular activities with ease. Whether you're a student, trainer, or admin — our portal has you covered.</p>
-          <button onClick={() => navigate("/login")} className="btn-primary">Get Started</button>
+           <button className="btn-primary" onClick={handleLoginClick}>Get Started</button>
         </div>
         <div className="hero-image">
           <img src={agahozoImage} alt="Hero Illustration" />
         </div>
       </header>
+
+      {/* Login Modal */}
+      {showLoginModal && (
+        <div className="login-modal">
+          <div className="login-options-box">
+            <h3>Select Login Type</h3>
+            <button className="btn-login-option" onClick={() => navigate("/trainer-login")}>Login as Trainer</button>
+            <button className="btn-login-option" onClick={() => navigate("/student-login")}>Login as Student</button>
+            <button className="btn-login-option" onClick={() => navigate("/admin-login")}>Login as Admin</button>
+            <button className="close-modal-btn" onClick={closeLoginModal}>Close</button>
+          </div>
+        </div>
+      )}
 
       {/* Features */}
       <section id="features" className="features-section">
@@ -117,7 +139,7 @@ export default function LandingPage() {
       {/* CTA Banner */}
       <section className="cta-banner">
         <h2>Ready to make your mark?</h2>
-        <button onClick={() => navigate("/login")} className="btn-primary">Join Now</button>
+        <button className="btn-primary" onClick={handleLoginClick}>Join Now</button>
       </section>
 
       {/* Footer */}
