@@ -45,6 +45,7 @@ export default function LandingPage() {
         </div>
         <ul className="nav-links">
           <li><button onClick={handleLoginClick} className="nav-btn">Login</button></li>
+          <li><button className="nav-btn" onClick={() => navigate("/signup")}>Signup</button></li>
         </ul>
       </nav>
 

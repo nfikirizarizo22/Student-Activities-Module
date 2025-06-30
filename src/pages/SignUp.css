@@ -1,0 +1,102 @@
+/* Container */
+.signup-container {
+  max-width: 420px;
+  margin: 4rem auto;
+  padding: 2.5rem 3rem;
+  background: linear-gradient(135deg, #f9faff, #e6f0ff);
+  border-radius: 1.5rem;
+  box-shadow:
+    0 8px 24px rgba(0, 123, 255, 0.15),
+    0 4px 12px rgba(0, 0, 0, 0.05);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: transform 0.3s ease;
+}
+
+.signup-container:hover {
+  transform: translateY(-5px);
+}
+
+/* Heading */
+.signup-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #003366;
+  letter-spacing: 1px;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Form */
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Inputs & Selects */
+.signup-form input,
+.signup-form select {
+  padding: 0.85rem 1rem;
+  border: 2px solid #cbd5e1;
+  border-radius: 0.75rem;
+  font-size: 1.1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background: #fff;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.03);
+}
+
+.signup-form input:focus,
+.signup-form select:focus {
+  outline: none;
+  border-color: #007BFF;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+}
+
+/* Button */
+.signup-form .btn-primary {
+  padding: 0.9rem 1rem;
+  background: linear-gradient(45deg, #007BFF, #0056b3);
+  color: white;
+  border: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+  transition: background 0.4s ease, transform 0.2s ease;
+  user-select: none;
+}
+
+.signup-form .btn-primary:hover {
+  background: linear-gradient(45deg, #0056b3, #003d80);
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(0, 86, 179, 0.6);
+}
+
+.signup-form .btn-primary:active {
+  transform: scale(0.95);
+}
+
+/* Login link */
+.login-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  color: #666;
+  user-select: none;
+}
+
+.link-text {
+  color: #007BFF;
+  cursor: pointer;
+  font-weight: 700;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.link-text:hover {
+  color: #0056b3;
+  text-decoration: none;
+}
+
