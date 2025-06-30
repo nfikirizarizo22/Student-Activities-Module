@@ -22,17 +22,24 @@ export default function LoginPage() {
   }
 
   useEffect(() => {
-    /* global google */
-    if (window.google && googleButton.current) {
-      window.google.accounts.id.initialize({
-        client_id: "356979158608-f48mg2hke22q2vg0p3go3kdpm4o267uk.apps.googleusercontent.com", // Replace with your client ID
-        callback: handleGoogleResponse,
-      });
-      window.google.accounts.id.renderButton(googleButton.current, {
-        theme: "outline",
-        size: "large",
-      });
+    function renderGoogleButton() {
+      console.log("here1", window.google, googleButton.current);
+      if (window.google && googleButton.current) {
+        console.log("hereee")
+        window.google.accounts.id.initialize({
+          client_id: "356979158608-c0en9lpluehrgo53673cqjig2fktn2ab.apps.googleusercontent.com", // Replace with your client ID
+          callback: handleGoogleResponse,
+        });
+        window.google.accounts.id.renderButton(googleButton.current, {
+          theme: "outline",
+          size: "large",
+        });
+      } else {
+        // Retry after a short delay if script isn't loaded yet
+        // setTimeout(renderGoogleButton, 100);
+      }
     }
+    renderGoogleButton();
   }, []);
 
   const handleLogin = (e) => {
@@ -50,11 +57,13 @@ export default function LoginPage() {
           <input type="password" placeholder="Password" required />
           <button type="submit">Login</button>
         </form>
-        <div ref={googleButton} style={{ marginTop: "10px" }}></div>
+        <div ref={googleButton} style={{ marginTop: "10px", border: "1px solid red" }}></div>
         <p className="note">Don't have an account? Contact admin.</p>
       </div>
     </div>
   );
 }
 
+// Note: Ensure you have the Google API script loaded in your index.html
 {/* <script src="https://accounts.google.com/gsi/client" async defer></script> */}
+
