@@ -17,22 +17,26 @@ export default function LoginPage() {
   const googleButton = useRef(null);
 
   function handleGoogleResponse(response) {
-    alert("Google login successful!");
+    alert("Google login successful!\nJWT: " + response.credential);
     navigate("/");
   }
 
   useEffect(() => {
-    /* global google */
-    if (window.google && googleButton.current) {
-      window.google.accounts.id.initialize({
-        client_id: "356979158608-f48mg2hke22q2vg0p3go3kdpm4o267uk.apps.googleusercontent.com", // Replace with your client ID
-        callback: handleGoogleResponse,
-      });
-      window.google.accounts.id.renderButton(googleButton.current, {
-        theme: "outline",
-        size: "large",
-      });
+    function renderGoogleButton() {
+      if (window.google && googleButton.current) {
+        window.google.accounts.id.initialize({
+          client_id: "356979158608-c0en9lpluehrgo53673cqjig2fktn2ab.apps.googleusercontent.com", // Replace with your actual client ID
+          callback: handleGoogleResponse,
+        });
+        window.google.accounts.id.renderButton(googleButton.current, {
+          theme: "outline",
+          size: "large",
+        });
+      } else {
+        setTimeout(renderGoogleButton, 100);
+      }
     }
+    renderGoogleButton();
   }, []);
 
   const handleLogin = (e) => {
@@ -57,4 +61,6 @@ export default function LoginPage() {
   );
 }
 
-{/* <script src="https://accounts.google.com/gsi/client" async defer></script> */}
+// Note: Ensure you have the Google API script loaded in your index.html
+// {/* <script src="https://accounts.google.com/gsi/client" async defer></script> */}
+
