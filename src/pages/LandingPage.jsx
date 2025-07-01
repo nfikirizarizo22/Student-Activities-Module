@@ -1,11 +1,19 @@
 import { useNavigate } from "react-router-dom";
 import './LandingPage.css';
 import agahozoImage from './agahozo.jpeg';
-import React, { useState } from 'react';
+import samImage from './sam.jpg';
+import fikiriImage from './fikiri.jpg';
+import React, { useState, useEffect } from 'react';
+import emailjs from 'emailjs-com'; // ✅ Import EmailJS
 
 export default function LandingPage() {
   const navigate = useNavigate();
   const [showLoginModal, setShowLoginModal] = useState(false);
+
+  // ✅ Initialize EmailJS
+  useEffect(() => {
+    emailjs.init("shJvsvzKJ4H93uurn"); // Your EmailJS Public Key
+  }, []);
 
   const handleLoginClick = () => {
     setShowLoginModal(true);
@@ -15,19 +23,29 @@ export default function LandingPage() {
     setShowLoginModal(false);
   };
 
+  const handleContactSubmit = (e) => {
+    e.preventDefault();
+    emailjs.sendForm("service_2kasu6v", "template_22a5tvb", e.target)
+      .then((response) => {
+        console.log("SUCCESS!", response);
+        alert("Message sent successfully!");
+        e.target.reset();
+      })
+      .catch((error) => {
+        console.log("FAILED...", error);
+        alert("Failed to send message: " + error.text);
+      });
+  };
+
   return (
     <div className="landing-container">
-      {/* Navigation */}
       <nav className="navbar">
         <div className="nav-brand">
           <span className="logo-accent">Stu</span><span className="logo-main">ActPortal</span>
         </div>
-
         <ul className="nav-links">
           <li><button onClick={handleLoginClick} className="nav-btn">Login</button></li>
-          {/* <li><a href="#features" className="nav-link">Features</a></li> */}
-          {/* <li><a href="#team" className="nav-link">Team</a></li> */}
-          {/* <li><a href="#contact" className="nav-link">Contact</a></li> */}
+          <li><button className="nav-btn" onClick={() => navigate("/signup")}>Signup</button></li>
         </ul>
       </nav>
 
@@ -36,7 +54,7 @@ export default function LandingPage() {
         <div className="hero-content">
           <h1>Engage. Explore. Excel.</h1>
           <p>Manage and participate in extracurricular activities with ease. Whether you're a student, trainer, or admin — our portal has you covered.</p>
-           <button className="btn-primary" onClick={handleLoginClick}>Get Started</button>
+          <button className="btn-primary" onClick={handleLoginClick}>Get Started</button>
         </div>
         <div className="hero-image">
           <img src={agahozoImage} alt="Hero Illustration" />
@@ -75,25 +93,13 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Stats */}
       <section className="stats-section">
         <div className="stats-grid">
-          <div className="stat-box">
-            <h3>500+</h3>
-            <p>Active Students</p>
-          </div>
-          <div className="stat-box">
-            <h3>15+</h3>
-            <p>Activity Types</p>
-          </div>
-          <div className="stat-box">
-            <h3>10+</h3>
-            <p>Trainers</p>
-          </div>
-          <div className="stat-box">
-            <h3>1+</h3>
-            <p>Years of Impact</p>
-          </div>
+          <div className="stat-box"><h3>500+</h3><p>Active Students</p></div>
+          <div className="stat-box"><h3>15+</h3><p>Activity Types</p></div>
+          <div className="stat-box"><h3>10+</h3><p>Trainers</p></div>
+          <div className="stat-box"><h3>1+</h3><p>Years of Impact</p></div>
         </div>
       </section>
 
@@ -117,11 +123,11 @@ export default function LandingPage() {
         <h2>Meet the Team</h2>
         <div className="team-members">
           <div className="team-member">
-            <div className="avatar" />
+            <img src={samImage} alt="Mugisha Samuel" className="avatar" />
             <p className="member-name">Mugisha Samuel</p>
           </div>
           <div className="team-member">
-            <div className="avatar" />
+            <img src={fikiriImage} alt="Zarizo Fikiri Nicolas" className="avatar" />
             <p className="member-name">Zarizo Fikiri Nicolas</p>
           </div>
         </div>
@@ -131,10 +137,10 @@ export default function LandingPage() {
       <section id="contact" className="contact-section">
         <h2>Contact Us</h2>
         <p>Have questions? Reach out to us!</p>
-        <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
-          <input type="text" placeholder="Your Name" required />
-          <input type="email" placeholder="Your Email" required />
-          <textarea placeholder="Your Message" rows="4" required></textarea>
+        <form id="contactForm" className="contact-form" onSubmit={handleContactSubmit}>
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
           <button type="submit" className="btn-primary">Send Message</button>
         </form>
       </section>
