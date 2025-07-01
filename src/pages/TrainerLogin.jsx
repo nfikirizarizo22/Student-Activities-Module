@@ -1,10 +1,34 @@
-// src/pages/LoginPage.jsx
-import React from 'react';
+// src/pages/TrainerLogin.jsx
+import React, { useEffect, useRef } from 'react';
 import './TrainerLogin.css';
 import { useNavigate } from 'react-router-dom';
 
-export default function LoginPage() {
+export default function TrainerLogin() {
   const navigate = useNavigate();
+  const googleButton = useRef(null);
+
+  function handleGoogleResponse(response) {
+    alert("Google login successful!\nJWT: " + response.credential);
+    navigate("/");
+  }
+
+  useEffect(() => {
+    function renderGoogleButton() {
+      if (window.google && googleButton.current) {
+        window.google.accounts.id.initialize({
+          client_id: "356979158608-c0en9lpluehrgo53673cqjig2fktn2ab.apps.googleusercontent.com", // Replace with your actual client ID
+          callback: handleGoogleResponse,
+        });
+        window.google.accounts.id.renderButton(googleButton.current, {
+          theme: "outline",
+          size: "large",
+        });
+      } else {
+        setTimeout(renderGoogleButton, 100);
+      }
+    }
+    renderGoogleButton();
+  }, []);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -21,6 +45,7 @@ export default function LoginPage() {
           <input type="password" placeholder="Password" required />
           <button type="submit">Login</button>
         </form>
+         <div ref={googleButton} style={{ marginTop: "10px" }}></div>
         <p className="note">Don't have an account? Contact admin.</p>
       </div>
     </div>
