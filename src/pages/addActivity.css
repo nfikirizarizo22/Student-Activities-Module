@@ -1,0 +1,111 @@
+.add-activity-form {
+  max-width: 640px;
+  margin: 3rem auto;
+  background: white;
+  border: 2px solid #004aad;
+  border-left: 6px solid #004aad;
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  color: #004aad;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.add-activity-form h2,
+.add-activity-form h3 {
+  color: #004aad;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.add-activity-form label {
+  display: block;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.add-activity-form input,
+.add-activity-form textarea,
+.add-activity-form select {
+  width: 100%;
+  margin-top: 0.4rem;
+  padding: 0.8rem;
+  border: 1.5px solid #004aad;
+  border-radius: 6px;
+  background: transparent;
+  color: #004aad;
+  font-size: 0.95rem;
+  transition: 0.3s ease;
+}
+
+.add-activity-form input:focus,
+.add-activity-form textarea:focus,
+.add-activity-form select:focus {
+  outline: none;
+  background: #f0f8ff;
+  border-color: #004aad;
+}
+
+.session-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 1rem;
+  align-items: center;
+}
+
+.remove-btn {
+  background: white;
+  border: 2px solid #004aad;
+  color: #004aad;
+  padding: 0.5rem 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.remove-btn:hover {
+  background: #004aad;
+  color: white;
+}
+
+.add-session-btn {
+  background: transparent;
+  border: 2px dashed #004aad;
+  color: #004aad;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.add-session-btn:hover {
+  background: #004aad;
+  color: white;
+}
+
+.submit-btn {
+  display: inline-block;
+  background: #004aad;
+  color: white;
+  padding: 0.9rem 2rem;
+  border: none;
+  border-radius: 30px;
+  margin-top: 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: white;
+  color: #004aad;
+  border: 2px solid #004aad;
+}
