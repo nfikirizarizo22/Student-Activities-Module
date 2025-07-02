@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./addActivity.css"; 
-export default function AddActivityForm() {
+
+export default function AddActivity() {
   const [activity, setActivity] = useState({
     name: "",
     activityLeader: "",
