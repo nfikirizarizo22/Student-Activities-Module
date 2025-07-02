@@ -1,13 +1,22 @@
 // TrainerDashboard.jsx
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; 
-import "./TrainerDashboard.css"; 
+import { useNavigate } from "react-router-dom";
+import "./TrainerDashboard.css";
 
 export default function TrainerDashboard() {
   const navigate = useNavigate();
   const [modal, setModal] = useState(null);
+  const [theme, setTheme] = useState("Light");
+  const [profileName, setProfileName] = useState("Trainer Name");
+  const [email, setEmail] = useState("trainer@email.com");
+  const [showEditProfile, setShowEditProfile] = useState(false);
+  const [showChangePassword, setShowChangePassword] = useState(false);
 
-  const closeModal = () => setModal(null);
+  const closeModal = () => {
+    setModal(null);
+    setShowEditProfile(false);
+    setShowChangePassword(false);
+  };
 
   // Sample data for demonstration
   const activities = [
@@ -23,9 +32,37 @@ export default function TrainerDashboard() {
     { from: "Student", text: "Can I join the next session?" },
   ];
   const settings = [
-    { label: "Notification Email", value: "trainer@email.com" },
-    { label: "Theme", value: "Light" },
+    { label: "Notification Email", value: email },
+    { label: "Theme", value: theme },
+    { label: "Profile Name", value: profileName },
+    { label: "Receive Email Notifications", value: "Yes" },
+    { label: "Language", value: "English" }
   ];
+
+  // Theme toggle
+  React.useEffect(() => {
+    document.body.setAttribute("data-theme", theme.toLowerCase());
+  }, [theme]);
+
+  // Edit Profile Handler
+  function handleProfileSave(e) {
+    e.preventDefault();
+    setProfileName(e.target.profileName.value);
+    setEmail(e.target.email.value);
+    setShowEditProfile(false);
+  }
+
+  // Change Password Handler (demo only)
+  function handlePasswordSave(e) {
+    e.preventDefault();
+    setShowChangePassword(false);
+    alert("Password changed!");
+  }
+
+  // Switch Theme Handler
+  function handleSwitchTheme() {
+    setTheme((prev) => (prev === "Light" ? "Dark" : "Light"));
+  }
 
   return (
     <div className="dashboard-container">
@@ -97,13 +134,61 @@ export default function TrainerDashboard() {
           <div className="modal-content" onClick={e => e.stopPropagation()}>
             <button className="close-btn" onClick={closeModal}>✖</button>
             <h2>Settings</h2>
-            <ul>
+            <ul className="settings-list">
               {settings.map((s, i) => (
-                <li key={i}>
-                  <strong>{s.label}:</strong> {s.value}
+                <li key={i} className="settings-item">
+                  <span className="settings-label">{s.label}:</span>
+                  <span className="settings-value">{s.value}</span>
                 </li>
               ))}
             </ul>
+            <div className="settings-actions">
+              <button className="settings-btn" onClick={() => setShowEditProfile(true)}>Edit Profile</button>
+              <button className="settings-btn" onClick={() => setShowChangePassword(true)}>Change Password</button>
+              <button className="settings-btn" onClick={handleSwitchTheme}>Switch Theme</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Profile Modal */}
+      {showEditProfile && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <button className="close-btn" onClick={closeModal}>✖</button>
+            <h2>Edit Profile</h2>
+            <form onSubmit={handleProfileSave} className="settings-form">
+              <label>
+                Profile Name:
+                <input name="profileName" defaultValue={profileName} required />
+              </label>
+              <label>
+                Notification Email:
+                <input name="email" type="email" defaultValue={email} required />
+              </label>
+              <button className="settings-btn" type="submit">Save</button>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Change Password Modal */}
+      {showChangePassword && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <button className="close-btn" onClick={closeModal}>✖</button>
+            <h2>Change Password</h2>
+            <form onSubmit={handlePasswordSave} className="settings-form">
+              <label>
+                New Password:
+                <input name="password" type="password" required />
+              </label>
+              <label>
+                Confirm Password:
+                <input name="confirmPassword" type="password" required />
+              </label>
+              <button className="settings-btn" type="submit">Change</button>
+            </form>
           </div>
         </div>
       )}
