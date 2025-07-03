@@ -25,7 +25,7 @@ export default function LoginPage() {
     function renderGoogleButton() {
       if (window.google && googleButton.current) {
         window.google.accounts.id.initialize({
-          client_id: "356979158608-c0en9lpluehrgo53673cqjig2fktn2ab.apps.googleusercontent.com", // Replace with your actual client ID
+          client_id: "356979158608-c0en9lpluehrgo53673cqjig2fktn2ab.apps.googleusercontent.com",
           callback: handleGoogleResponse,
         });
         window.google.accounts.id.renderButton(googleButton.current, {
@@ -42,7 +42,7 @@ export default function LoginPage() {
   const handleLogin = (e) => {
     e.preventDefault();
     alert("Logged in!");
-    navigate("/");
+    navigate("/dashboard");
   };
 
   return (

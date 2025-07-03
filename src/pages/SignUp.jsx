@@ -23,7 +23,7 @@ export default function Signup() {
     e.preventDefault();
     console.log("Signup Data:", formData);
     alert("Signup successful!");
-    navigate(`/${formData.role}-login`);
+    navigate(`/loginpage`); 
   };
 
   return (
@@ -65,7 +65,7 @@ export default function Signup() {
 
         <button type="submit" className="btn-primary">Sign Up</button>
         <p className="login-link">
-          Already have an account? <span onClick={() => navigate("/")} className="link-text">Go to Login</span>
+          Already have an account? <span onClick={() => navigate("/loginpage")} className="link-text">Go to Login</span>
         </p>
       </form>
     </div>
