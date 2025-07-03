@@ -28,8 +28,22 @@ export default function TrainerDashboard() {
 
   // Sample data for demonstration
   const activities = [
-    { name: "Football Training", date: "2025-07-10" },
-    { name: "Math Club", date: "2025-07-12" },
+    {
+      name: "Football Training",
+      date: "2025-07-10 15:00",
+      days: ["Monday", "Wednesday", "Friday"],
+      description: "Weekly football practice session.",
+      participants: 18,
+      status: "Upcoming"
+    },
+    {
+      name: "Math Club",
+      date: "2025-07-12 10:00",
+      days: ["Tuesday"],
+      description: "Math problem-solving and games.",
+      participants: 12,
+      status: "Upcoming"
+    }
   ];
   const participation = [
     { student: "Alice", activity: "Football Training", date: "2025-07-10", status: "Confirmed" },
@@ -43,12 +57,10 @@ export default function TrainerDashboard() {
     { label: "Language", value: "English" }
   ];
 
-  // Theme toggle
   React.useEffect(() => {
     document.body.setAttribute("data-theme", theme.toLowerCase());
   }, [theme]);
 
-  // Edit Profile Handler
   function handleProfileSave(e) {
     e.preventDefault();
     setProfileName(e.target.profileName.value);
@@ -56,14 +68,12 @@ export default function TrainerDashboard() {
     setShowEditProfile(false);
   }
 
-  // Change Password Handler (demo only)
   function handlePasswordSave(e) {
     e.preventDefault();
     setShowChangePassword(false);
     alert("Password changed!");
   }
 
-  // Switch Theme Handler
   function handleSwitchTheme() {
     setTheme((prev) => (prev === "Light" ? "Dark" : "Light"));
   }
@@ -105,19 +115,40 @@ export default function TrainerDashboard() {
         </nav>
       </aside>
 
-      {/* Pop-up Modals */}
       {modal === "activities" && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={e => e.stopPropagation()}>
             <button className="close-btn" onClick={closeModal}>✖</button>
             <h2>My Activities</h2>
-            <ul>
-              {activities.map((act, i) => (
-                <li key={i}>
-                  <strong>{act.name}</strong> — {act.date}
-                </li>
-              ))}
-            </ul>
+            <table className="activities-table">
+              <thead>
+                <tr>
+                  <th>Activity Name</th>
+                  <th>Date/Time</th>
+                  <th>Days</th> 
+                  <th>Description</th>
+                  <th>Participants</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {activities.map((a, i) => (
+                  <tr key={i}>
+                    <td>{a.name}</td>
+                    <td>{a.date || "TBD"}</td>
+                    <td>{a.days ? a.days.join(", ") : "N/A"}</td> {/* Add this */}
+                    <td>{a.description || "No description"}</td>
+                    <td>{a.participants || 0}</td>
+                    <td>{a.status || "Upcoming"}</td>
+                    <td>
+                      <button className="settings-btn" style={{marginRight: 8}}>Edit</button>
+                      <button className="settings-btn" style={{background: "#e74c3c"}}>Delete</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       )}
@@ -162,7 +193,7 @@ export default function TrainerDashboard() {
                         style={{ background: "#e74c3c" }}
                         onClick={() => {
                           participation.splice(i, 1);
-                          setModal("participation"); // force re-render
+                          setModal("participation"); 
                         }}
                       >
                         Remove
@@ -290,6 +321,16 @@ export default function TrainerDashboard() {
               <button className="settings-btn" onClick={() => setShowEditProfile(true)}>Edit Profile</button>
               <button className="settings-btn" onClick={() => setShowChangePassword(true)}>Change Password</button>
               <button className="settings-btn" onClick={handleSwitchTheme}>Switch Theme</button>
+              <button
+                className="settings-btn"
+                style={{ background: "#e74c3c" }}
+                onClick={() => {
+                  closeModal();
+                  navigate("/");
+                }}
+              >
+                Logout
+              </button>
             </div>
           </div>
         </div>

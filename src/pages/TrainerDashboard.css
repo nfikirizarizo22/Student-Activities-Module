@@ -298,17 +298,80 @@
   width: 100%;
   border-collapse: collapse;
   margin-top: 1rem;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 1rem;
 }
+
 .participation-table th,
-.participation-table td {
-  border: 1px solid #e0e0e0;
-  padding: 0.5rem 1rem;
+.activities-table th {
+  background: #004aad;
+  color: #fff;
+  padding: 0.75rem 1rem;
   text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid #003377;
 }
+
+.participation-table td,
+.activities-table td {
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  vertical-align: top;
+}
+
+.activities-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 1rem;
+}
+
+.activities-table th,
 .participation-table th {
   background: #004aad;
   color: #fff;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid #003377;
 }
+
+.activities-table td,
+.participation-table td {
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  vertical-align: top;
+}
+
+.activities-table tr:last-child td,
+.participation-table tr:last-child td {
+  border-bottom: none;
+}
+
+.activities-table tr:nth-child(even),
 .participation-table tr:nth-child(even) {
   background: #f5f8ff;
+}
+
+.activities-table tr:hover,
+.participation-table tr:hover {
+  background: #eaf2ff;
+}
+
+@media (max-width: 700px) {
+  .activities-table,
+  .participation-table {
+    font-size: 0.95rem;
+  }
+  .activities-table th,
+  .participation-table th,
+  .activities-table td,
+  .participation-table td {
+    padding: 0.5rem 0.5rem;
+  }
 }
