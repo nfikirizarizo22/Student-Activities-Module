@@ -12,6 +12,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import './login.jsx';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import './LoginPage.css';
 import { API_URL } from '../utils';
 import AuthContext from '../contexts/AuthContext';
 
