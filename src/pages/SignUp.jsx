@@ -1,29 +1,54 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SignUp.css';
+import axios from 'axios';
+import {API_URL} from "../utils"
 
-export default function Signup() {
+export default function SignUp () {
   const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
-    role: 'student',
+    username: '',
+    role: 'student' // default role,
   });
 
   const handleChange = (e) => {
-    setFormData(prev => ({
-      ...prev,
+    // setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    // Updating state value with dynamic key
+    const updatedValues = {
+      ...formData,
       [e.target.name]: e.target.value
-    }));
+    } 
+    console.log("Updated role:", updatedValues.role);
+    setFormData(updatedValues);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Signup Data:", formData);
-    alert("Signup successful!");
-    navigate(`/${formData.role}-login`);
+
+    try {
+      setIsSubmitting(true);
+      const res = await axios.post(`${API_URL}/auth/register`, {
+        names: formData.name,
+        email: formData.email,
+        password: formData.password,
+        username: formData.username,
+        role: formData.role
+      });
+      console.log(res.data); // response from backend
+      alert("Signup successful!");
+      navigate("/"); // redirect to landing page
+    } catch (err) {
+      console.error(err);
+      alert("Signup failed!" + err?.response?.data?.error
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -49,6 +74,15 @@ export default function Signup() {
         />
 
         <input
+          type="text"
+          name="username"
+          placeholder="Username"
+          value={formData.username}
+          onChange={handleChange}
+          required
+        />
+
+        <input
           type="password"
           name="password"
           placeholder="Create Password"
@@ -63,9 +97,9 @@ export default function Signup() {
           <option value="admin">Admin</option>
         </select>
 
-        <button type="submit" className="btn-primary">Sign Up</button>
+        <button type="submit" className="btn-primary" disabled={isSubmitting}>{isSubmitting ? "Signing Up..." : "Sign Up"}</button>
         <p className="login-link">
-          Already have an account? <span onClick={() => navigate("/")} className="link-text">Go to Login</span>
+          Already have an account? <span onClick={() => navigate("/login")} className="link-text">Go to Login</span>
         </p>
       </form>
     </div>

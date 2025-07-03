@@ -44,7 +44,7 @@ export default function LandingPage() {
           <span className="logo-accent">Stu</span><span className="logo-main">ActPortal</span>
         </div>
         <ul className="nav-links">
-          <li><button onClick={handleLoginClick} className="nav-btn">Login</button></li>
+          <li><button onClick={() => navigate("/login")} className="nav-btn">Login</button></li>
           <li><button className="nav-btn" onClick={() => navigate("/signup")}>Signup</button></li>
         </ul>
       </nav>
@@ -54,25 +54,16 @@ export default function LandingPage() {
         <div className="hero-content">
           <h1>Engage. Explore. Excel.</h1>
           <p>Manage and participate in extracurricular activities with ease. Whether you're a student, trainer, or admin — our portal has you covered.</p>
-          <button className="btn-primary" onClick={handleLoginClick}>Get Started</button>
+          <button className="btn-primary" onClick={() => navigate("/login")}>Get Started</button> {/* directly go to student login page */}
+
         </div>
         <div className="hero-image">
           <img src={agahozoImage} alt="Hero Illustration" />
         </div>
       </header>
 
-      {/* Login Modal */}
-      {showLoginModal && (
-        <div className="login-modal">
-          <div className="login-options-box">
-            <h3>Select Login Type</h3>
-            <button className="btn-login-option" onClick={() => navigate("/trainer-login")}>Login as Trainer</button>
-            <button className="btn-login-option" onClick={() => navigate("/student-login")}>Login as Student</button>
-            <button className="btn-login-option" onClick={() => navigate("/admin-login")}>Login as Admin</button>
-            <button className="close-modal-btn" onClick={closeLoginModal}>Close</button>
-          </div>
-        </div>
-      )}
+    
+     
 
       {/* Features */}
       <section id="features" className="features-section">

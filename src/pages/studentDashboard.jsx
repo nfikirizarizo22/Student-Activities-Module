@@ -1,10 +1,9 @@
-// TrainerDashboard.jsx
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom"; 
 import "./TrainerDashboard.css"; 
 import AuthContext from "../contexts/AuthContext";
 
-export default function TrainerDashboard() {
+export default function StudentDashboard() {
   const navigate = useNavigate();
   const [modal, setModal] = useState(null);
   const {token, isLoadingInfo, onLogout,userInfo} = useContext(AuthContext);
@@ -13,12 +12,18 @@ export default function TrainerDashboard() {
     if(!token && !isLoadingInfo) {
       navigate("/");
     }
-    if(userInfo?.role !== "trainer" && !isLoadingInfo) {
+    if(userInfo?.role !== "student" && !isLoadingInfo) {
       navigate("/");
     }
   }, [token, isLoadingInfo]);
 
   const closeModal = () => setModal(null);
+
+
+
+  if(!token){
+    return null;
+  }
 
   return (
     <div className="dashboard-container">
@@ -29,12 +34,11 @@ export default function TrainerDashboard() {
         <nav className="nav-menu">
           <ul>
             <li><a href="#home">🏠 Dashboard</a></li>
-            <li onClick={() => navigate("/add-activity")}><a href="#">➕ Add Activity</a></li>
-            <li onClick={() => setModal("/activities")}><Link to="/activities">📋 My Activities</Link></li>
-            <li onClick={() => setModal("participation")}><Link to="#">👥 Participation</Link></li>
-            <li onClick={() => setModal("messages")}><Link to="#">💬 Messages</Link></li>
-            <li onClick={() => setModal("settings")}><Link to="#">⚙️ Settings</Link></li>
-            <li><Link to="#logout" className="logout" onClick={onLogout}>🚪 Logout</Link></li>
+            <li onClick={() => setModal("/activities")}><a href="/activities">📋 Activities</a></li>
+            <li onClick={() => setModal("participation")}><a href="#">👥 Participation</a></li>
+            <li onClick={() => setModal("messages")}><a href="#">💬 Messages</a></li>
+            <li onClick={() => setModal("settings")}><a href="#">⚙️ Settings</a></li>
+            <li><a href="#logout" className="logout" onClick={onLogout}>🚪 Logout</a></li>
           </ul>
         </nav>
       </aside>
