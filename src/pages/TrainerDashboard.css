@@ -238,6 +238,13 @@ body.dark {
 
 /* Modal Styles */
 .modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
     position: fixed;
     top: 0;
     left: 0;
@@ -256,7 +263,6 @@ body.dark {
     from { opacity: 0; }
     to { opacity: 1; }
 }
-
 .modal-content {
     background: var(--bg-primary);
     padding: 2rem;
@@ -281,8 +287,17 @@ body.dark {
         transform: scale(1) translateY(0); 
     }
 }
-
 .close-btn {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  background: #004aad;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 2rem; height: 2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.2s;
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -299,7 +314,6 @@ body.dark {
     transition: all 0.2s ease;
     font-size: 0.875rem;
 }
-
 .close-btn:hover {
     background: var(--danger-color);
     color: white;
@@ -466,4 +480,192 @@ body.dark {
     .main-dashboard {
         padding: 0;
     }
+}
+/* Settings list and actions */
+.settings-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 1rem 0;
+}
+.settings-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 1rem;
+}
+.settings-label {
+  font-weight: 600;
+  color: #004aad;
+}
+.settings-value {
+  color: #222;
+  font-family: monospace;
+}
+.settings-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  justify-content: flex-end;
+}
+.settings-btn {
+  background: #004aad;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.settings-btn:hover {
+  background: #002e6d;
+}
+
+/* Settings forms (Edit Profile, Change Password) */
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.settings-form label {
+  font-weight: 600;
+  color: #004aad;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.settings-form input {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #004aad;
+  font-size: 1rem;
+}
+.settings-form button {
+  align-self: flex-end;
+  margin-top: 1rem;
+}
+
+/* Dark theme support */
+[data-theme="dark"] {
+  background: #181c24;
+  color: #e0e0e0;
+}
+[data-theme="dark"] .modal-content,
+[data-theme="dark"] .main-dashboard,
+[data-theme="dark"] .sidebar {
+  background: #23283a;
+  color: #e0e0e0;
+}
+[data-theme="dark"] .settings-btn {
+  background: #222e50;
+  color: #fff;
+}
+[data-theme="dark"] .settings-btn:hover {
+  background: #004aad;
+}
+[data-theme="dark"] .settings-label {
+  color: #7bb1ff;
+}
+[data-theme="dark"] .settings-value {
+  color: #fff;
+}
+[data-theme="dark"] .settings-form input {
+  background: #23283a;
+  color: #fff;
+  border: 1px solid #7bb1ff;
+}
+
+.messages-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.message-item.unread {
+  background: #eaf2ff;
+  border-radius: 6px;
+  padding: 1rem;
+}
+.participation-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 1rem;
+}
+
+.participation-table th,
+.activities-table th {
+  background: #004aad;
+  color: #fff;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid #003377;
+}
+
+.participation-table td,
+.activities-table td {
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  vertical-align: top;
+}
+
+.activities-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 1rem;
+}
+
+.activities-table th,
+.participation-table th {
+  background: #004aad;
+  color: #fff;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid #003377;
+}
+
+.activities-table td,
+.participation-table td {
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  vertical-align: top;
+}
+
+.activities-table tr:last-child td,
+.participation-table tr:last-child td {
+  border-bottom: none;
+}
+
+.activities-table tr:nth-child(even),
+.participation-table tr:nth-child(even) {
+  background: #f5f8ff;
+}
+
+.activities-table tr:hover,
+.participation-table tr:hover {
+  background: #eaf2ff;
+}
+
+@media (max-width: 700px) {
+  .activities-table,
+  .participation-table {
+    font-size: 0.95rem;
+  }
+  .activities-table th,
+  .participation-table th,
+  .activities-table td,
+  .participation-table td {
+    padding: 0.5rem 0.5rem;
+  }
 }

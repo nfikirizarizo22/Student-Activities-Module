@@ -8,8 +8,8 @@
   // press c + enter to clear console
   // press q + enter to quit
 
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import './studentLogin.css';
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import './login.jsx';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { API_URL } from '../utils';

@@ -4,23 +4,13 @@ import agahozoImage from './agahozo.jpeg';
 import samImage from './sam.jpg';
 import fikiriImage from './fikiri.jpg';
 import React, { useState, useEffect } from 'react';
-import emailjs from 'emailjs-com'; // ✅ Import EmailJS
+import emailjs from 'emailjs-com'; 
 
 export default function LandingPage() {
   const navigate = useNavigate();
-  const [showLoginModal, setShowLoginModal] = useState(false);
-
-  // ✅ Initialize EmailJS
-  useEffect(() => {
-    emailjs.init("shJvsvzKJ4H93uurn"); // Your EmailJS Public Key
-  }, []);
 
   const handleLoginClick = () => {
-    setShowLoginModal(true);
-  };
-
-  const closeLoginModal = () => {
-    setShowLoginModal(false);
+    navigate("/loginpage"); 
   };
 
   const handleContactSubmit = (e) => {
