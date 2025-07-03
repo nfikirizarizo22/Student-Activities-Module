@@ -283,3 +283,32 @@
   color: #fff;
   border: 1px solid #7bb1ff;
 }
+
+.messages-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.message-item.unread {
+  background: #eaf2ff;
+  border-radius: 6px;
+  padding: 1rem;
+}
+.participation-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+.participation-table th,
+.participation-table td {
+  border: 1px solid #e0e0e0;
+  padding: 0.5rem 1rem;
+  text-align: left;
+}
+.participation-table th {
+  background: #004aad;
+  color: #fff;
+}
+.participation-table tr:nth-child(even) {
+  background: #f5f8ff;
+}
