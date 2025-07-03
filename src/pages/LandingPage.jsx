@@ -8,15 +8,9 @@ import emailjs from 'emailjs-com'; // ✅ Import EmailJS
 
 export default function LandingPage() {
   const navigate = useNavigate();
-  const [showLoginModal, setShowLoginModal] = useState(false);
-
-  // ✅ Initialize EmailJS
-  useEffect(() => {
-    emailjs.init("shJvsvzKJ4H93uurn"); // Your EmailJS Public Key
-  }, []);
 
   const handleLoginClick = () => {
-    setShowLoginModal(true);
+    navigate("/loginpage"); // Redirect to LoginPage.jsx route
   };
 
   const closeLoginModal = () => {
@@ -60,19 +54,6 @@ export default function LandingPage() {
           <img src={agahozoImage} alt="Hero Illustration" />
         </div>
       </header>
-
-      {/* Login Modal */}
-      {showLoginModal && (
-        <div className="login-modal">
-          <div className="login-options-box">
-            <h3>Select Login Type</h3>
-            <button className="btn-login-option" onClick={() => navigate("/trainer-login")}>Login as Trainer</button>
-            <button className="btn-login-option" onClick={() => navigate("/student-login")}>Login as Student</button>
-            <button className="btn-login-option" onClick={() => navigate("/admin-login")}>Login as Admin</button>
-            <button className="close-modal-btn" onClick={closeLoginModal}>Close</button>
-          </div>
-        </div>
-      )}
 
       {/* Features */}
       <section id="features" className="features-section">

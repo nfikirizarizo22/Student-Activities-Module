@@ -9,7 +9,7 @@
   // press q + enter to quit
 
 import React, { useEffect, useRef } from 'react';
-import './studentLogin.css';
+import './LoginPage.css';
 import { useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
@@ -48,7 +48,7 @@ export default function LoginPage() {
   return (
     <div className="login-container">
       <div className="login-box">
-        <h2>Student Login</h2>
+        <h2>Login</h2>
         <form onSubmit={handleLogin}>
           <input type="text" placeholder="Username" required />
           <input type="password" placeholder="Password" required />
